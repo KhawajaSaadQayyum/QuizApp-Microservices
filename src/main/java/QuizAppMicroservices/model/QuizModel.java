@@ -12,7 +12,7 @@ public class QuizModel {
 
     private Integer Id;
     private String questionTitle;
-    private String difficultyLevel;
+    private String category;
     private String option1;
     private String option2;
     private String option3;

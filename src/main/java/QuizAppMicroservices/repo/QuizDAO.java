@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface QuizDAO extends JpaRepository<QuizModel, Integer> {
-//    Optional<QuizModel> findByCategory(String category);
+    List<QuizModel> findByCategory(String category);
 }

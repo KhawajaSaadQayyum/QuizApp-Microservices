@@ -5,6 +5,8 @@ import QuizAppMicroservices.repo.QuizDAO;
 import QuizAppMicroservices.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -20,18 +22,18 @@ public class QuizController {
     QuizService quizService;
     QuizDAO quizDAO;
   @GetMapping("/get")
-    public List<QuizModel> getQuizQuestions(){
+    public ResponseEntity<List<QuizModel>> getQuizQuestions(){
         return quizService.getAllQuestion();
     }
 
 @PostMapping("/add")
-public String createEmployee(@RequestBody QuizModel questions) {
+public ResponseEntity<String> createEmployee(@RequestBody QuizModel questions) {
     quizService.addQuestions(questions);
-    return "Success";
+     return new ResponseEntity<>("success", HttpStatus.OK);
 
 }
-//@PostMapping("/getBy/{category}")
-//    public Optional<QuizModel> findByCategory(@PathVariable String category){
-//      return quizService.findByCategory(category);
-//}
+@GetMapping("/getBy/{category}")
+    public ResponseEntity<List<QuizModel>> findByCategory(@PathVariable String category){
+      return quizService.findByCategory(category);
+}
 }
